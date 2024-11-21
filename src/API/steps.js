@@ -3,6 +3,8 @@
 // -- --- -- -- --- - --- 
 // import axios from 'axios'; // we setup this first after install
 
+import PetItem from "../components/PetItem";
+
 // const instance = axios.create({
 //   baseURL: 'https://pets-react-query-backend.eapi.joincoded.com',
 // });
@@ -169,37 +171,67 @@
 //   const response = await instance.delete(`/pets/${id}`);
 //   return response
 // }
+// in pet details:
+
 // import { deletePet } from "../API/pets"; in petdetails
 // we creat on click and call a fucntion
 {/* <button  onClick={handleDelete}
 className="w-[70px] border border-black rounded-md  hover:bg-red-400">
   Delete
 </button> */}
+
 // add this to mutata the values
 
 // const mutation = useMutation({
 //   mutationFn: (id) => deletePet(id),
 // });
+// const handleDelete =() =>{
+//   mutation.mutate(petId);
+// }
 
 // and modifiy it
-// const PetDetail = (id) => {
-//   const petId=180
-
+// const PetDetail = ({petId}) => {
+//  
 //   const { data, isFetching, isSuccess } = useQuery({
-//     queryKey: ["petData"],
+//     queryKey: ["petData", petId], // you hve to add petId
 //     queryFn: (id) => getOnePet(petId)
 //    });
-
 // dont forget to import
 // import { useMutation } from "@tanstack/react-query";
 // we dont need the hard coded  const petId=180
+
+//then we go to APP.JS fro all of them togther in on place to pass the value
 // we go to app.js where are they all togther
+// const [seletedPetId, setSelectedPetId]= useState(151) // initial vale of 151
 // return (
 //   <QueryClientProvider client={queryClient}> 
 //     <div className="font-mono">
 //       <Navbar />
 //       <Home />
-//       <PetList setPetId={}/>
-//       <PetDetail petId={} />
+//       <PetList setPetId={setSelectedPetId}/>
+//       <PetDetail petId={seletedPetId} />
 //     </div>
 //   </QueryClientProvider>
+//
+//
+// for view
+// in PetItem=
+// modify button
+// <button onClick={handleClick}
+//       className=" border border-black px-5 py-1 rounded-md hover:bg-[black] hover:text-white">
+//         View
+//       </button>
+// make function:
+//  const handleClick=()=>{
+//   setPetId(pet.id);
+// };
+// and modify props
+//const PetItem = ({ pet , setPetId}) => {
+
+// finaly go to petList
+//modify the props
+// const PetList = ({setPetId}) => {
+// then modify the map to show the setPetId
+//  const petList = data
+// ?.filter((pet) => pet.name.toLowerCase().includes(query.toLowerCase()))
+// .map((pet) => <PetItem pet={pet} key={pet.id} setPetId={setPetId} />);
